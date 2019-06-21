@@ -16,7 +16,8 @@ before_install:
 
 script:
   - ./extract_lines.sh
-  - cat output/lines.csv | xsv count
+  #fail if less than 200 lines
+  - test `cat output/lines.csv | xsv count` -ge 200
 
 deploy:
   provider: pages
